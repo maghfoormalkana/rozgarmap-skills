@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RozgarMap Skill Competition</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <img src="Logo RM.png" alt="RozgarMap Logo">
+  </div>
+  <div class="title">RozgarMap Skill Competition <br><span class="neon-text">Organizers: Maghfoor & Sakshi</span></div>
+  <div class="status">
+    Student: <span id="studentName" class="highlight"></span><br>
+    Time Left: <span id="countdown"></span>
+    <button id="themeToggle" class="icon-btn" title="Toggle Theme" style="margin-left: 15px;"><i class="fa-solid fa-moon"></i></button>
+  </div>
+</header>
+
+<div class="master-wrapper">
+  <div class="master-card">
+    <h3><i class="fa-solid fa-keyboard"></i> Master Data ( Type Exactly )</h3>
+    <div id="masterRow">Loading target data...</div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="left">
+    <div class="card">
+      <div class="banner" id="timeOver"><i class="fa-solid fa-stopwatch"></i> TIME OVER</div>
+
+      <form id="form" autocomplete="off">
+        <div class="row">
+          <input id="firstName" placeholder="First Name" required autocomplete="off">
+          <input id="lastName" placeholder="Last Name" required autocomplete="off">
+        </div>
+
+        <select id="gender" required>
+          <option value="" disabled selected>Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Other</option>
+        </select>
+
+        <input id="contact" placeholder="Contact Number" required autocomplete="off">
+        <input id="email" type="email" placeholder="Email Address" required autocomplete="off">
+        <input id="address" placeholder="Address Line 1" required autocomplete="off">
+
+        <div class="row city-row">
+          <input id="city" placeholder="City" required autocomplete="off">
+          <input id="state" placeholder="State" required autocomplete="off">
+          <input id="pincode" placeholder="Pincode" required autocomplete="off">
+        </div>
+
+        <button type="submit" class="primary-btn"><i class="fa-solid fa-check"></i> Submit Entry</button>
+      </form>
+
+      <button class="reset" onclick="resetAll()"><i class="fa-solid fa-rotate-right"></i> Reset Batch</button>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="dashboard">
+      <div class="tooltip-card">
+        <i class="fa-solid fa-list-ol dash-icon"></i><br>
+        Total Entries<br>
+        <strong id="totalEntries">0</strong>
+        <span class="tooltip-text">Total rows successfully submitted.</span>
+      </div>
+
+      <div class="tooltip-card">
+        <i class="fa-solid fa-bolt dash-icon"></i><br>
+        Typing Speed<br>
+        <strong id="speed">0 WPM</strong>
+        <span class="tooltip-text">WPM = (Total Characters / 5) / Minutes Passed</span>
+      </div>
+
+      <div class="tooltip-card">
+        <i class="fa-solid fa-bullseye dash-icon"></i><br>
+        Accuracy<br>
+        <strong id="accuracy">0%</strong>
+        <span class="tooltip-text">Accuracy = (Correct Fields / Total Fields) × 100</span>
+      </div>
+
+      <div class="tooltip-card">
+        <i class="fa-solid fa-signal dash-icon"></i><br>
+        Status<br>
+        <strong id="status" class="neon-text">Running</strong>
+      </div>
+    </div>
+
+    <div class="card table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>First</th><th>Last</th><th>Gender</th>
+            <th>Contact</th><th>Email</th>
+            <th>Address</th><th>City</th>
+            <th>State</th><th>Pincode</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="resultModal">
+  <div class="modal-content card">
+    <h2 style="font-family: 'Orbitron', sans-serif; color: var(--neon); margin-bottom: 15px;">Time's Up!</h2>
+    <p>Student: <strong id="modalStudent" class="highlight"></strong></p>
+    <div class="modal-stats">
+      <div><i class="fa-solid fa-list-ol"></i><br>Entries<br><strong id="modalEntries">0</strong></div>
+      <div><i class="fa-solid fa-bolt"></i><br>Speed<br><strong id="modalSpeed">0 WPM</strong></div>
+      <div><i class="fa-solid fa-bullseye"></i><br>Accuracy<br><strong id="modalAccuracy">0%</strong></div>
+    </div>
+    <button onclick="window.location.href='index.html'" class="primary-btn" style="width: 100%; margin-top: 20px;">Return to Setup</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,108 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RozgarMap Skill Competition - Setup</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
-<style>
-.center-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - 80px);
-}
-.setup-card {
-  width: 600px;
-  padding: 40px;
-}
-.setup-card h2 {
-  font-family: 'Orbitron', sans-serif;
-  margin-bottom: 25px;
-  text-align: center;
-  font-size: 24px;
-  color: var(--text-main);
-}
-.grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.full {
-  grid-column: 1 / -1;
-}
-label {
-  font-size: 13px;
-  margin-bottom: 5px;
-  display: block;
-  color: var(--text-muted);
-  font-weight: 500;
-}
-input, select {
-  margin-top: 5px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#081426">
+  <title>RozgarMap Skill Competition | Setup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-
-<header>
-  <div class="logo-area">
-    <img src="Logo RM.png" alt="RozgarMap Logo">
-  </div>
-  <div class="title">RozgarMap Skill Competition <br><span class="neon-text">Organizers: Maghfoor & Sakshi</span></div>
-  <div class="status header-actions">
-    Setup Panel
-    <button id="themeToggle" class="icon-btn" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
-  </div>
-</header>
-
-<div class="center-wrapper">
-  <div class="card setup-card">
-    <h2>Competition Setup</h2>
-    <div class="grid">
-      <div class="full">
-        <label><i class="fa-solid fa-user"></i> Student Name</label>
-        <input type="text" id="studentNameInput" placeholder="Enter Student Name" required>
-      </div>
-      <div>
-        <label><i class="fa-solid fa-clock"></i> Duration (Minutes)</label>
-        <input type="number" id="durationInput" value="10" min="1">
-      </div>
-      <div>
-        <label><i class="fa-solid fa-gamepad"></i> Mode</label>
-        <select id="modeInput">
-          <option value="practice">Practice</option>
-          <option value="exam">Exam</option>
-          <option value="championship">Championship</option>
-        </select>
-      </div>
-      <div class="full">
-        <button onclick="startCompetition()" class="primary-btn" style="width:100%; margin-top:20px;">
-          <i class="fa-solid fa-play"></i> START COMPETITION
-        </button>
-      </div>
+<body class="setup-page">
+  <header class="app-header">
+    <a class="brand" href="index.html" aria-label="RozgarMap home">
+      <span class="brand-mark">R</span>
+      <span class="brand-copy"><strong>ROZGARMAP</strong><small>SKILL COMPETITION</small></span>
+    </a>
+    <div class="header-center"><span class="live-dot"></span> SKILLS. SPEED. ACCURACY.</div>
+    <div class="header-actions">
+      <span class="organizer-label">Organized by <strong>Maghfoor &amp; Sakshi</strong></span>
+      <button class="icon-button theme-toggle" type="button" aria-label="Switch color theme" title="Switch theme"><span class="theme-icon">☼</span></button>
     </div>
-  </div>
-</div>
+  </header>
 
-<script src="script.js"></script>
-<script>
-function startCompetition(){
-  const student = document.getElementById("studentNameInput").value.trim();
-  const duration = document.getElementById("durationInput").value;
-  const mode = document.getElementById("modeInput").value;
+  <main class="setup-shell">
+    <section class="setup-intro">
+      <span class="eyebrow">COMPETITION CONSOLE</span>
+      <h1>Ready to test your <span>skills?</span></h1>
+      <p>Set up your session, review the rules and begin your assessment.</p>
+      <div class="setup-highlights">
+        <div><span class="highlight-icon">◷</span><span><b>Timed challenge</b><small>Work against the clock</small></span></div>
+        <div><span class="highlight-icon">◎</span><span><b>Accuracy tracking</b><small>Every field matters</small></span></div>
+        <div><span class="highlight-icon">↗</span><span><b>Instant results</b><small>Review your performance</small></span></div>
+      </div>
+    </section>
 
-  if(!student){
-    alert("Please enter Student Name");
-    return;
-  }
-
-  const settings = { student, duration, mode };
-  localStorage.setItem("competitionSettings", JSON.stringify(settings));
-  window.location.href = "competition.html";
-}
-</script>
+    <section class="setup-card panel">
+      <div class="card-heading">
+        <div><span class="eyebrow">NEW SESSION</span><h2>Competition setup</h2></div>
+        <span class="step-pill">STEP 01 / 01</span>
+      </div>
+      <form id="setupForm" class="setup-form">
+        <label class="field full-field"><span>Participant name <em>*</em></span>
+          <input type="text" id="studentNameInput" placeholder="Enter participant's full name" maxlength="80" autocomplete="name" required>
+        </label>
+        <div class="field-grid">
+          <label class="field"><span>Duration</span>
+            <div class="input-suffix"><input type="number" id="durationInput" value="10" min="1" max="120" required><span>MIN</span></div>
+          </label>
+          <label class="field"><span>Competition mode</span>
+            <select id="modeInput">
+              <option value="practice">Practice</option>
+              <option value="exam">Assessment</option>
+              <option value="championship">Championship</option>
+            </select>
+          </label>
+        </div>
+        <div class="rules-box">
+          <span class="rules-icon">ⓘ</span>
+          <div><strong>Before you begin</strong><p>Enter the details exactly as shown in the master record. Your accuracy, completed entries and speed contribute to your result.</p></div>
+        </div>
+        <button class="primary-button start-button" type="submit">Start competition <span>→</span></button>
+      </form>
+      <p class="privacy-note">Your session settings are saved on this device for this attempt.</p>
+    </section>
+  </main>
+  <footer class="app-footer"><span>© RozgarMap Skill Competition</span><span>Learn • Practice • Perform</span></footer>
+  <script src="theme.js"></script>
+  <script>
+    document.getElementById('setupForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const student = document.getElementById('studentNameInput').value.trim();
+      const duration = Number(document.getElementById('durationInput').value);
+      const mode = document.getElementById('modeInput').value;
+      if (!student) { document.getElementById('studentNameInput').focus(); return; }
+      if (!Number.isInteger(duration) || duration < 1 || duration > 120) {
+        document.getElementById('durationInput').setCustomValidity('Choose a duration between 1 and 120 minutes.');
+        document.getElementById('durationInput').reportValidity();
+        return;
+      }
+      localStorage.setItem('competitionSettings', JSON.stringify({ student, duration, mode }));
+      window.location.href = 'competition.html';
+    });
+    document.getElementById('durationInput').addEventListener('input', e => e.target.setCustomValidity(''));
+  </script>
 </body>
 </html>
